@@ -1,0 +1,6 @@
+supplier_id,supplier_name,main_product_id,on_time_delivery_rate,quality_defect_rate,avg_cost_per_unit_factor
+1,Global Parts Inc.,15,0.89,0.021,0.94
+2,Precision Supply Co.,7,0.97,0.026,1.01
+3,Apex Components,38,0.93,0.023,1.07
+4,Reliable Materials Ltd.,31,0.93,0.04,0.91
+5,Innovate Solutions,6,0.91,0.014,1.02

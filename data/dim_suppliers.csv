@@ -1,0 +1,11 @@
+supplier_id,supplier_name,contact_person,phone,email,address,lead_time_days
+S01,Perez and Sons Corp,Donald Mitchell,001-523-313-9831x99802,nburgess@example.com,"922 Cole Manor Apt. 544, North Paulchester, NH 49172",9
+S02,West and Sons Solutions,Jeremy Snyder,001-548-687-1741x774,rodriguezmark@example.org,"97797 Mckenzie Pines Apt. 039, Kingstad, MS 33983",16
+S03,Mason Ltd Corp,David Miller,(666)641-0667x944,levi60@example.net,"59067 Adrian Stream Suite 894, North Allison, MI 42522",11
+S04,"Ortiz, Stanley and Edwards Solutions",Gina Olson,774.235.4280x0716,debbie33@example.net,"643 Colleen Creek Apt. 519, Fowlerside, VT 10112",18
+S05,Lee and Sons Corp,James Martinez,366.407.3406x26311,jason60@example.com,"119 Pamela Mount, Brandonchester, NE 08422",14
+S06,Murphy-Rowland Supplies,Derek Dennis,(635)415-4885,robin96@example.org,"USNV Snyder, FPO AA 35332",11
+S07,"Cochran, Arnold and Reed Corp",Luis Perez DDS,232-253-5289,williamhoffman@example.com,"872 Christina Summit, South Natalieburgh, MI 88384",13
+S08,Best-Young Global,Gabriel Thomas,+1-296-252-6123x3479,taylorjames@example.org,"042 Kara Island Suite 939, Ashleyberg, FM 15496",18
+S09,Nielsen Group Supplies,Timothy Gregory,+1-275-828-7588x7409,erica54@example.org,"Unit 5335 Box 0574, DPO AA 12368",4
+S10,Taylor-Martin Corp,Michael Gentry,288.467.9053,charles75@example.org,"5009 Fowler Forge, Port Jacqueline, DE 12708",6

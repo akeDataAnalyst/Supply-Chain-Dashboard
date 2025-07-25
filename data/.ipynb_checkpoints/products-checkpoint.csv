@@ -1,0 +1,51 @@
+product_id,product_name,category,unit_cost,unit_price,unit_weight_kg
+1,Product_001,Home Goods,402.21,924.39,7.06
+2,Product_002,Electronics,220.86,273.85,27.66
+3,Product_003,Electronics,312.38,525.83,48.53
+4,Product_004,Home Goods,106.8,229.73,13.75
+5,Product_005,Electronics,176.05,273.27,6.1
+6,Product_006,Electronics,335.95,486.69,20.01
+7,Product_007,Electronics,296.95,477.56,8.34
+8,Product_008,Home Goods,238.37,338.31,18.93
+9,Product_009,Home Goods,292.42,533.8,34.96
+10,Product_010,Home Goods,419.55,841.24,41.88
+11,Product_011,Automotive,480.78,1039.83,11.47
+12,Product_012,Apparel,199.14,378.53,14.78
+13,Product_013,Automotive,141.27,187.13,20.0
+14,Product_014,Apparel,236.16,525.5,38.33
+15,Product_015,Automotive,27.59,63.59,17.57
+16,Product_016,Food,371.37,808.97,27.97
+17,Product_017,Electronics,474.48,1082.78,41.95
+18,Product_018,Electronics,289.13,623.68,7.33
+19,Product_019,Automotive,215.49,448.35,11.49
+20,Product_020,Food,12.65,25.32,33.58
+21,Product_021,Electronics,269.83,637.98,7.97
+22,Product_022,Food,448.49,1067.65,14.19
+23,Product_023,Automotive,485.96,952.84,18.53
+24,Product_024,Automotive,280.73,520.37,22.8
+25,Product_025,Electronics,405.18,500.68,23.91
+26,Product_026,Apparel,449.27,835.39,32.4
+27,Product_027,Apparel,419.1,888.26,30.35
+28,Product_028,Home Goods,339.16,534.47,4.92
+29,Product_029,Apparel,293.31,503.6,0.17
+30,Product_030,Automotive,467.74,592.0,33.36
+31,Product_031,Electronics,376.98,708.2,11.52
+32,Product_032,Home Goods,447.32,827.62,37.75
+33,Product_033,Home Goods,59.44,134.34,38.83
+34,Product_034,Apparel,434.11,736.02,17.91
+35,Product_035,Automotive,179.69,275.3,45.82
+36,Product_036,Apparel,222.62,513.23,1.32
+37,Product_037,Apparel,169.18,224.65,31.58
+38,Product_038,Home Goods,489.13,1122.4,12.2
+39,Product_039,Apparel,140.73,283.94,18.15
+40,Product_040,Home Goods,222.7,452.84,46.52
+41,Product_041,Automotive,435.22,979.45,16.33
+42,Product_042,Food,472.15,637.13,49.75
+43,Product_043,Apparel,91.11,194.0,37.75
+44,Product_044,Electronics,368.6,642.13,34.09
+45,Product_045,Home Goods,331.77,704.2,14.54
+46,Product_046,Automotive,333.67,733.4,28.54
+47,Product_047,Electronics,36.17,43.47,41.55
+48,Product_048,Automotive,127.22,286.28,39.51
+49,Product_049,Automotive,285.16,611.36,11.84
+50,Product_050,Electronics,399.5,961.45,42.16

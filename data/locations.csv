@@ -1,0 +1,11 @@
+location_id,location_name,location_type,city,state,latitude,longitude
+1,Location_01,Distribution Center,Chicago,IL,41.8781,-87.6298
+2,Location_02,Distribution Center,Dallas,TX,32.7767,-96.797
+3,Location_03,Warehouse,San Diego,CA,32.7157,-117.1611
+4,Location_04,Distribution Center,Phoenix,AZ,33.4484,-112.074
+5,Location_05,Factory,San Jose,CA,37.3382,-121.8863
+6,Location_06,Distribution Center,New York,NY,40.7128,-74.006
+7,Location_07,Factory,Los Angeles,CA,34.0522,-118.2437
+8,Location_08,Distribution Center,San Diego,CA,32.7157,-117.1611
+9,Location_09,Distribution Center,Chicago,IL,41.8781,-87.6298
+10,Location_10,Warehouse,Dallas,TX,32.7767,-96.797
