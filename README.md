@@ -15,6 +15,9 @@ The dashboard uses simulated data to demonstrate key functionalities.
 ## Key Features
 
 * **Demand Forecasting:** Visualize historical demand and future predictions with accuracy metrics.
+  
+* ![](png/demand_trend&forecast.PNG)
+  
 * **Inventory Management:** Track current stock, calculate optimal safety stock, reorder points, and reorder quantities.
 * **Supplier Analytics:** Monitor supplier performance, including on-time delivery rates and average lead times.
 * **Interactive Filters:** Analyze data by product, location, supplier, and custom date ranges.
