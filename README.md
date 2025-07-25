@@ -1,5 +1,7 @@
 # Supply Chain Optimization Dashboard
 
+[](https://supply-chain-dashboard-fppecphmqqsatcchdwfqxy.streamlit.app)
+
 ## Project Overview
 
 This project provides an interactive dashboard for optimizing supply chain operations. 
