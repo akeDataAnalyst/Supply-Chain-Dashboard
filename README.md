@@ -22,6 +22,8 @@ The dashboard uses simulated data to demonstrate key functionalities.
 * **Supplier Analytics:** Monitor supplier performance, including on-time delivery rates and average lead times.
 * **Interactive Filters:** Analyze data by product, location, supplier, and custom date ranges.
 
+* ![](png/stock_reorder_safety.PNG)
+
 ## Technology Stack
 
 * **Python:** Core programming language
