@@ -1,6 +1,6 @@
 # Supply Chain Optimization Dashboard
 
-[](https://supply-chain-dashboard-fppecphmqqsatcchdwfqxy.streamlit.app)
+[Dashboard App](https://supply-chain-dashboard-fppecphmqqsatcchdwfqxy.streamlit.app)
 
 ## Project Overview
 
