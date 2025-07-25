@@ -1,0 +1,7 @@
+pandas
+numpy
+Faker
+prophet
+scikit-learn
+streamlit
+plotly
