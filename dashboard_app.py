@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
 # dashboard_app.py - Enhanced User Interface
 
 import streamlit as st
@@ -13,7 +7,7 @@ import plotly.graph_objects as go
 import os
 from datetime import date # Import date for default date inputs
 
-# --- Configuration ---
+# Configuration
 DASHBOARD_DATA_PATH = 'dashboard_data/'
 SOURCE_DATA_PATH = 'data/'
 FORECASTS_FILE = 'fact_demand_forecasts.csv'
@@ -32,7 +26,7 @@ st.set_page_config(
     page_icon="📈"
 )
 
-# --- Function to load data ---
+# Function to load data 
 @st.cache_data # Cache data to avoid reloading on every rerun
 def load_data(file_path, parse_dates=None, id_columns=None):
     """
@@ -57,7 +51,7 @@ def load_data(file_path, parse_dates=None, id_columns=None):
         st.stop()
 
 
-# --- Load all datasets ---
+# Load all datasets
 # Use st.spinner for better user feedback during loading
 with st.spinner("Loading data... This might take a moment."):
     forecasts_df = load_data(os.path.join(DASHBOARD_DATA_PATH, FORECASTS_FILE), 
@@ -87,7 +81,7 @@ with st.spinner("Loading data... This might take a moment."):
                                   id_columns=['purchase_id', 'product_id', 'location_id', 'supplier_id'])
 
 
-# --- Data Preprocessing for Dashboard ---
+# Data Preprocessing for Dashboard
 # Merge product name into forecasts_df for display
 if not products_df.empty and not forecasts_df.empty:
     products_info = products_df[['product_id', 'product_name']].copy()
@@ -195,7 +189,7 @@ selected_supplier = st.sidebar.selectbox(
 )
 
 
-# --- Main Content Area - Using Tabs for Clear Navigation ---
+# Main Content Area - Using Tabs for Clear Navigation
 tab_forecast, tab_inventory, tab_supplier = st.tabs(["📈 Demand Forecast", "📦 Inventory Management", "🚚 Supplier Analytics"])
 
 with tab_forecast:
@@ -438,10 +432,3 @@ with tab_supplier:
 
 st.markdown("---")
 st.markdown(f"Developed by Aklilu Abera | Data last updated: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}")
-
-
-# In[ ]:
-
-
-
-
