@@ -1,11 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-# demand_forecaster.py - FINAL attempt to fix ValueError: Input contains NaN.
-
 import pandas as pd
 from prophet import Prophet
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -37,7 +29,7 @@ class DemandForecaster:
             
             original_rows = len(self.demand_df)
 
-            # --- Step 1: Robust Type Conversion and Initial NaN Handling ---
+            # Step 1: Robust Type Conversion and Initial NaN Handling
             # Convert 'date' column to datetime, coercing errors to NaT (Not a Time)
             self.demand_df['date'] = pd.to_datetime(self.demand_df['date'], errors='coerce')
             
@@ -106,7 +98,7 @@ class DemandForecaster:
 
             print(f"\n--- Forecasting for Product: {product_id}, Location: {location_id} ---")
 
-            # --- Step 2: Extract and Clean Time Series Data for Current Combination ---
+            # Step 2: Extract and Clean Time Series Data for Current Combination
             ts_data = self.demand_df[
                 (self.demand_df['product_id'] == product_id) &
                 (self.demand_df['location_id'] == location_id)
@@ -115,7 +107,7 @@ class DemandForecaster:
             # Rename columns to Prophet's expected 'ds' and 'y'
             ts_data = ts_data.rename(columns={'date': 'ds', 'units_sold': 'y'})
             
-            # --- Aggressive NaN Removal for ds and y (Prophet's core columns) ---
+            # Aggressive NaN Removal for ds and y (Prophet's core columns)
             original_ts_len = len(ts_data)
             ts_data.dropna(subset=['ds', 'y'], inplace=True) # Ensure NO NaNs in ds or y
             
@@ -143,7 +135,7 @@ class DemandForecaster:
             # Sort data by date for Prophet
             ts_data = ts_data.sort_values(by='ds').reset_index(drop=True)
 
-            # --- Step 3: Validation Split ---
+            # Step 3: Validation Split
             # Ensure sufficient data points for validation period
             # Adjusted logic for validation_days_actual to ensure train_data is not too small
             # Need at least 2 points for validation if validation_days_actual > 0
@@ -156,7 +148,7 @@ class DemandForecaster:
             train_data = ts_data[ts_data['ds'] < ts_data['ds'].max() - pd.Timedelta(days=validation_days_actual)].copy()
             validation_data = ts_data[ts_data['ds'] >= ts_data['ds'].max() - pd.Timedelta(days=validation_days_actual)].copy()
 
-            # --- Step 4: Model Training & Accuracy Calculation ---
+            # Step 4: Model Training & Accuracy Calculation
             current_accuracy_metrics = [] # To store metrics for this specific combination
 
             if train_data.empty or len(train_data) < 2:
@@ -246,7 +238,7 @@ class DemandForecaster:
             
             all_accuracy_metrics.extend(current_accuracy_metrics) # Add metrics for this combo
 
-            # --- Step 5: Future Forecasting ---
+            # Step 5: Future Forecasting
             # Make future_dataframe from the *full* ts_data (train + validation) to forecast forward
             future_forecast = model.make_future_dataframe(periods=forecast_horizon_days, include_history=False)
             
@@ -290,7 +282,7 @@ class DemandForecaster:
         else:
             print("No accuracy metrics to save.")
 
-# --- Main execution block for demonstration ---
+# Main execution block for demonstration
 if __name__ == "__main__":
     forecaster = DemandForecaster()
 
@@ -316,10 +308,3 @@ if __name__ == "__main__":
         print(accuracy_metrics.head())
     else:
         print("No accuracy metrics generated.")
-
-
-# In[ ]:
-
-
-
-
