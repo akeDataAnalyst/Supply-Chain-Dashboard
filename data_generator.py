@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
 
 # data_generator.py
 
@@ -31,7 +26,7 @@ if not os.path.exists(DATA_OUTPUT_DIR):
 
 print(f"Generating data to: {DATA_OUTPUT_DIR}")
 
-# --- 1. Generate Dimension Tables ---
+# 1. Generate Dimension Tables
 
 # dim_products.csv
 print("Generating dim_products.csv...")
@@ -82,7 +77,7 @@ dim_suppliers_df.to_csv(os.path.join(DATA_OUTPUT_DIR, 'dim_suppliers.csv'), inde
 print("dim_suppliers.csv generated.")
 
 
-# --- 2. Generate Fact Tables ---
+# 2. Generate Fact Tables
 
 # demand.csv (Historical Demand Data)
 print("Generating demand.csv (historical fact table)...")
@@ -225,22 +220,3 @@ print(f"  - dim_suppliers.csv ({len(dim_suppliers_df)} rows)")
 print(f"  - demand.csv ({len(demand_df)} rows)")
 print(f"  - inventory.csv ({len(inventory_df)} rows)")
 print(f"  - fact_purchases.csv ({len(fact_purchases_df)} rows)")
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
