@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
 # inventory_optimizer.py
 
 import pandas as pd
@@ -64,8 +58,7 @@ class InventoryOptimizer:
 
         z_score = norm.ppf(service_level)
 
-        # --- OPTIMIZATION STARTS HERE ---
-
+        
         # 1. Pre-calculate Average Daily Demand (ADD) and Standard Deviation of Daily Demand (SDD)
         #    for all product-location combinations from historical demand.
         historical_agg = self.demand_df.groupby(['product_id', 'location_id'])['y'].agg(
@@ -130,8 +123,6 @@ class InventoryOptimizer:
         all_combinations['reorder_quantity'] = all_combinations['forecasted_sum_reorder_period'].astype(int)
         all_combinations['reorder_quantity'] = all_combinations['reorder_quantity'].apply(lambda x: max(1, x) if x > 0 else int(max(1, all_combinations['avg_daily_demand'].mean() * reorder_period_days))) # Fallback if forecast is 0
 
-        # --- END OPTIMIZATION ---
-
         # 5. Determine Inventory Status (still best done with an apply or function for complex logic)
         def get_status(row):
             current = row['current_stock']
@@ -162,15 +153,10 @@ class InventoryOptimizer:
         return final_df
 
 
-# --- Example Usage (for testing the module directly) ---
+# Example Usage (for testing the module directly)
 if __name__ == "__main__":
     print("Running InventoryOptimizer example...")
-    
-    # IMPORTANT: Ensure data/ and dashboard_data/ are populated!
-    # Run these first if you haven't recently:
-    # python data_generator.py
-    # python demand_forecaster.py
-    
+        
     try:
         optimizer = InventoryOptimizer()
         inventory_insights_df = optimizer.calculate_inventory_metrics(
@@ -191,10 +177,3 @@ if __name__ == "__main__":
             print("No inventory insights generated. Check data or parameters.")
     except Exception as e:
         print(f"\nAn error occurred during inventory optimization: {e}")
-
-
-# In[ ]:
-
-
-
-
