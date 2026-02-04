@@ -1,6 +1,6 @@
 # Supply Chain Optimization Dashboard
 
-[Dashboard App](https://supply-chain-dashboard-fppecphmqqsatcchdwfqxy.streamlit.app)
+[![Live Demo](https://img.shields.io/badge/Streamlit-Live%20Demo-brightgreen)](https://supply-chain-dashboard-fppecphmqqsatcchdwfqxy.streamlit.app)
 
 ![](png/supply_chain_opt.PNG)
 
