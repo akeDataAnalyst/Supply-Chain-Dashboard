@@ -1,11 +1,9 @@
-# dashboard_app.py - Enhanced User Interface
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import os
-from datetime import date # Import date for default date inputs
+from datetime import date
 
 # Configuration
 DASHBOARD_DATA_PATH = 'dashboard_data/'
@@ -22,8 +20,8 @@ DEMAND_FILE = 'demand.csv'
 # Set Streamlit page configuration
 st.set_page_config(
     layout="wide",
-    page_title="Supply Chain Optimization Dashboard", # More descriptive title
-    page_icon="📈"
+    page_title="Supply Chain Optimization Dashboard",
+    page_icon=""
 )
 
 # Function to load data 
@@ -50,9 +48,6 @@ def load_data(file_path, parse_dates=None, id_columns=None):
         st.error(f"Error loading `{os.path.basename(file_path)}`: {e}. Please check the file content and format.")
         st.stop()
 
-
-# Load all datasets
-# Use st.spinner for better user feedback during loading
 with st.spinner("Loading data... This might take a moment."):
     forecasts_df = load_data(os.path.join(DASHBOARD_DATA_PATH, FORECASTS_FILE), 
                              parse_dates=['forecast_date'], 
@@ -82,7 +77,6 @@ with st.spinner("Loading data... This might take a moment."):
 
 
 # Data Preprocessing for Dashboard
-# Merge product name into forecasts_df for display
 if not products_df.empty and not forecasts_df.empty:
     products_info = products_df[['product_id', 'product_name']].copy()
     forecasts_df = pd.merge(forecasts_df, products_info, on='product_id', how='left')
@@ -112,18 +106,17 @@ if not suppliers_df.empty and not fact_purchases_df.empty:
     fact_purchases_df['supplier_name'].fillna('Unknown Supplier', inplace=True)
 
 # Get unique product, location, and supplier IDs for sidebar filters
-# Ensure these lists are populated even if dataframes are empty to prevent errors
 unique_products = sorted(products_df['product_id'].unique().tolist()) if not products_df.empty else []
 unique_locations = sorted(locations_df['location_id'].unique().tolist()) if not locations_df.empty else []
 unique_suppliers = sorted(suppliers_df['supplier_id'].unique().tolist()) if not suppliers_df.empty else []
 
 
-# --- Dashboard Header ---
-st.title("📊 Supply Chain Optimization Dashboard") # Updated title for main content
+# Dashboard Header
+st.title("Supply Chain Optimization Dashboard")
 st.markdown("A comprehensive tool for **Demand Forecasting**, **Inventory Management**, and **Supplier Analytics**.")
 
-# --- Sidebar Filters ---
-st.sidebar.header("⚙️ Dashboard Filters")
+# Sidebar Filters
+st.sidebar.header("Dashboard Filters")
 
 # Product and Location Filters
 st.sidebar.subheader("Product & Location Selection")
@@ -142,10 +135,9 @@ selected_location = st.sidebar.selectbox(
 )
 
 # Date Range Filters
-st.sidebar.subheader("📅 Date Range Selection")
+st.sidebar.subheader("Date Range Selection")
 
 # Determine min/max dates from relevant dataframes for default values
-# Use .dt.date to get Python date objects for st.date_input
 min_date_hist = historical_demand_df['ds'].min().date() if not historical_demand_df.empty else date(2022, 1, 1)
 max_date_hist = historical_demand_df['ds'].max().date() if not historical_demand_df.empty else date(2023, 12, 31)
 
@@ -176,11 +168,11 @@ end_date = st.sidebar.date_input(
 )
 
 if start_date > end_date:
-    st.sidebar.error("⚠️ Error: End date must be after start date. Please adjust your selection.")
-    st.stop() # Stop execution if dates are invalid
+    st.sidebar.error("Error: End date must be after start date. Please adjust your selection.")
+    st.stop() 
 
 # Supplier Filter (for Purchases tab)
-st.sidebar.subheader("📦 Supplier Filter (Purchases Tab)")
+st.sidebar.subheader("Supplier Filter (Purchases Tab)")
 selected_supplier = st.sidebar.selectbox(
     "Select Supplier ID",
     options=['All'] + unique_suppliers,
@@ -190,7 +182,7 @@ selected_supplier = st.sidebar.selectbox(
 
 
 # Main Content Area - Using Tabs for Clear Navigation
-tab_forecast, tab_inventory, tab_supplier = st.tabs(["📈 Demand Forecast", "📦 Inventory Management", "🚚 Supplier Analytics"])
+tab_forecast, tab_inventory, tab_supplier = st.tabs(["Demand Forecast", "Inventory Management", "Supplier Analytics"])
 
 with tab_forecast:
     st.header(f"Demand Forecast for Product: **{selected_product}** at Location: **{selected_location}**")
@@ -221,7 +213,7 @@ with tab_forecast:
         (historical_demand_df_processed['ds'].dt.date <= end_date)
     ].sort_values('ds')
 
-    st.subheader("📊 Forecast Accuracy Metrics")
+    st.subheader("Forecast Accuracy Metrics")
     if not filtered_metrics.empty:
         col1, col2, col3 = st.columns(3)
         mae = filtered_metrics[filtered_metrics['Metric'] == 'MAE']['Value'].iloc[0] if 'MAE' in filtered_metrics['Metric'].values else 'N/A'
@@ -235,9 +227,9 @@ with tab_forecast:
         with col3:
             st.metric(label="Mean Absolute Percentage Error (MAPE)", value=f"{mape:.2f}%" if isinstance(mape, (int, float)) else mape, help="Average percentage difference between actual and forecasted values. Easier for business interpretation.")
     else:
-        st.info("ℹ️ No accuracy metrics available for the selected combination. This might be due to insufficient historical data for validation.")
+        st.info("No accuracy metrics available for the selected combination. This might be due to insufficient historical data for validation.")
 
-    st.subheader("📈 Demand Trend & Forecast")
+    st.subheader("Demand Trend & Forecast")
 
     if not filtered_forecasts.empty or not filtered_historical.empty:
         plot_df_historical = filtered_historical.rename(columns={'ds': 'Date', 'y': 'Units'})
@@ -283,16 +275,16 @@ with tab_forecast:
         )
         st.plotly_chart(fig, use_container_width=True)
     else:
-        st.info("ℹ️ No forecast or historical data available for the selected combination and date range. Please adjust filters.")
+        st.info("No forecast or historical data available for the selected combination and date range. Please adjust filters.")
 
-    # Raw Forecast Data Table (inside an expander for cleanliness)
-    with st.expander("📋 View Raw Forecast Data"):
+    # Raw Forecast Data Table
+    with st.expander("View Raw Forecast Data"):
         if not filtered_forecasts.empty:
             display_columns = ['product_name', 'product_id', 'location_id', 'ds', 'yhat', 'yhat_lower', 'yhat_upper']
             display_df = filtered_forecasts[display_columns].rename(columns={'ds': 'Forecast Date', 'yhat': 'Forecasted Units'})
             st.dataframe(display_df.set_index('Forecast Date'))
         else:
-            st.info("ℹ️ No raw forecast data to display for the selected date range.")
+            st.info("No raw forecast data to display for the selected date range.")
 
 with tab_inventory:
     st.header(f"Inventory Management for Product: **{selected_product}** at Location: **{selected_location}**")
@@ -305,7 +297,7 @@ with tab_inventory:
         out_of_stock = inventory_insights_df[inventory_insights_df['inventory_status'] == 'Out of Stock'].shape[0]
         overstock = inventory_insights_df[inventory_insights_df['inventory_status'] == 'Potential Overstock'].shape[0]
         
-        st.subheader("📊 Overall Inventory Status Summary (All SKU-Locations)")
+        st.subheader("Overall Inventory Status Summary (All SKU-Locations)")
         col_inv1, col_inv2, col_inv3, col_inv4, col_inv5 = st.columns(5)
         with col_inv1: st.metric("Total SKU-Locations", total_sku_locations, help="Total unique product-location combinations analyzed.")
         with col_inv2: st.metric("Reorder Needed", reorder_needed, help="Number of SKU-locations where current stock is below the Reorder Point.")
@@ -347,7 +339,7 @@ with tab_inventory:
             else: # Optimal
                 st.success(f"**Inventory Status:** {status_text} 🟢 (Inventory levels are healthy.)")
 
-            st.subheader("📈 Current Stock vs. Reorder/Safety Levels")
+            st.subheader("Current Stock vs. Reorder/Safety Levels")
             chart_data = pd.DataFrame({
                 'Metric': ['Current Stock', 'Safety Stock', 'Reorder Point'],
                 'Value': [inv_row['current_stock'], inv_row['safety_stock'], inv_row['reorder_point']]
@@ -363,16 +355,16 @@ with tab_inventory:
             fig_inv.update_layout(yaxis_title="Units")
             st.plotly_chart(fig_inv, use_container_width=True)
 
-            with st.expander("📋 View All Inventory Insights (Filtered)"):
+            with st.expander("View All Inventory Insights (Filtered)"):
                 st.dataframe(filtered_inventory_insights[[
                     'product_name', 'location_id', 'current_stock', 'avg_daily_demand',
                     'avg_lead_time_days', 'safety_stock', 'reorder_point', 'reorder_quantity',
                     'inventory_status'
                 ]].set_index('product_name'))
         else:
-            st.info("ℹ️ No inventory insights available for the selected product and location. Please ensure the product-location combination exists in `inventory_insights.csv`.")
+            st.info("No inventory insights available for the selected product and location. Please ensure the product-location combination exists in `inventory_insights.csv`.")
     else:
-        st.info("ℹ️ Inventory insights data not found. Please run `inventory_optimizer.py` first to generate `inventory_insights.csv`.")
+        st.info("Inventory insights data not found. Please run `inventory_optimizer.py` first to generate `inventory_insights.csv`.")
 
 
 with tab_supplier:
@@ -388,7 +380,7 @@ with tab_supplier:
         filtered_purchases = filtered_purchases[filtered_purchases['supplier_id'] == selected_supplier]
 
     if not filtered_purchases.empty:
-        st.subheader("📊 Key Supplier Performance Metrics")
+        st.subheader("Key Supplier Performance Metrics")
         
         on_time_delivery_rate = (filtered_purchases['on_time_delivery'].sum() / len(filtered_purchases)) * 100
         
@@ -413,7 +405,7 @@ with tab_supplier:
         with col_sup3: st.metric(f"Avg Actual Lead Time ({supplier_name_for_metric})", f"{avg_actual_lead_time:.1f} days", help="Average number of days from order placement to actual delivery.")
 
 
-        st.subheader("📋 Recent Purchase Orders (Filtered)")
+        st.subheader("Recent Purchase Orders (Filtered)")
         filtered_purchases_display = pd.merge(
             filtered_purchases,
             products_df[['product_id', 'product_name']],
@@ -427,8 +419,8 @@ with tab_supplier:
         ]
         st.dataframe(filtered_purchases_display[display_cols_purchases].head(20))
     else:
-        st.info("ℹ️ No purchase order data available for the selected criteria and date range. Adjust supplier/date filters or ensure `fact_purchases.csv` is generated.")
+        st.info("No purchase order data available for the selected criteria and date range. Adjust supplier/date filters or ensure `fact_purchases.csv` is generated.")
 
 
 st.markdown("---")
-st.markdown(f"Developed by Aklilu Abera | Data last updated: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M:%S')}")
+st.markdown(" **Developed by Aklilu Abera Dana | Supply Chain Data Analyst** ")
