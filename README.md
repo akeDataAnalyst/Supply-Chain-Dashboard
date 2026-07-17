@@ -31,3 +31,7 @@ The dashboard uses simulated data to demonstrate key functionalities.
 * **Prophet:** Time series forecasting
 * **Streamlit:** Interactive web dashboard
 * **Plotly:** Data visualization
+
+---
+## Developed by
+**Aklilu Abera** | **E2E Data Analyst**
