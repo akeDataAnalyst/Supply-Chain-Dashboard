@@ -24,6 +24,7 @@ The dashboard uses simulated data to demonstrate key functionalities.
 
 * ![](png/stock_reorder_safety.PNG)
 
+---
 ## Technology Stack
 
 * **Python:** Core programming language
