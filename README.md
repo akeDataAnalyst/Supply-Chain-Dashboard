@@ -1,17 +1,17 @@
-# Supply Chain Optimization Dashboard
+# **Supply Chain Optimization Dashboard**
 
 [![Live Demo](https://img.shields.io/badge/Streamlit-Live%20Demo-brightgreen)](https://supply-chain-dashboard-fppecphmqqsatcchdwfqxy.streamlit.app)
 
-![](png/supply_chain_opt.PNG)
-
+---
 ## Project Overview
 
 This project provides an interactive dashboard for optimizing supply chain operations. 
-It covers **Demand Forecasting**, **Inventory Management**, and **Supplier Analytics** to help businesses 
+It covers Demand Forecasting, Inventory Management, and Supplier Analytics to help businesses 
 make informed decisions regarding stock levels, future demand, and supplier performance.
 
 The dashboard uses simulated data to demonstrate key functionalities.
 
+---
 ## Key Features
 
 * **Demand Forecasting:** Visualize historical demand and future predictions with accuracy metrics.
